@@ -4,7 +4,7 @@ from .models import TinderBot
 
 
 class TinderBotAdmin(admin.ModelAdmin):
-    list_display = ('name', 'username', 'password')
+    list_display = ['username']
 
   
 # Register your models here.

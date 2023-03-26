@@ -20,6 +20,7 @@ from tinderbot import views
 
 router = routers.DefaultRouter()
 router.register(r'tinderbot', views.TinderBotView, 'tinderbot')
+#router.register(r'username', views.TinderBotView.as_view({'post':'hellodjango'}), 'username')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
