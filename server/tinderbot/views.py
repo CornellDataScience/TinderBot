@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 
 # Create your views here.
 from rest_framework import viewsets
@@ -11,3 +11,11 @@ from .models import TinderBot
 class TinderBotView(viewsets.ModelViewSet):
     serializer_class = TodoSerializer
     queryset = TinderBot.objects.all()
+
+    #@action(detail=False, methods=['get'])
+    def test(self, request):
+        return HttpResponse("Username recieved: ")
+
+
+
+    
