@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Screens/homepage.dart';
-import 'package:flutter_application_1/Screens/loginpage.dart';
-import 'package:flutter_application_1/Screens/my_matches.dart';
+import 'package:tinbot_frontend/Screens/homepage.dart';
+import 'package:tinbot_frontend/Screens/loginpage.dart';
+import 'package:tinbot_frontend/Screens/my_matches.dart';
 
 
 class PrevPreferences extends StatefulWidget {
@@ -153,7 +153,7 @@ class _PrevPreferences extends State<PrevPreferences> {
       //getting a transparent appbar
         backgroundColor: const Color.fromRGBO(209, 146, 113, 76), elevation: 0.0,
         centerTitle: false,
-        title: Image.asset('/Users/andreasiby/CDS/TinderBot/FrontEnd/flutter_application_1/lib/pictures/TinderBot_Logo-removebg-preview.png', fit: BoxFit.fitHeight,
+        title: Image.asset('/Users/andreasiby/CDS/TinderBot/FrontEnd/tinbot_frontend/lib/pictures/TinderBot_Logo-removebg-preview.png', fit: BoxFit.fitHeight,
         ),
         actions: <Widget>[
           Column(

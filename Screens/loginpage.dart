@@ -1,12 +1,17 @@
 // ignore_for_file: library_private_types_in_public_api, prefer_const_literals_to_create_immutables
 
 import 'dart:ui';
-
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Screens/aboutus.dart';
-import 'package:flutter_application_1/Screens/homepage.dart';
+import 'package:flutter/widgets.dart';
+import 'package:mongo_dart/mongo_dart.dart';
+import 'package:tinbot_frontend/Screens/aboutus.dart';
+import 'package:tinbot_frontend/Screens/homepage.dart';
 import 'package:carousel_images/carousel_images.dart';
-import 'package:flutter_application_1/Screens/my_matches.dart';
+import 'package:tinbot_frontend/Screens/my_matches.dart';
+
+String host = Platform.environment['MONGO_DART_DRIVER_HOST'] ?? '127.0.0.1';
+String port = Platform.environment['MONGO_DART_DRIVER_PORT'] ?? '27017';
 
 
 class LogInPage extends StatelessWidget {
@@ -29,7 +34,7 @@ class LoginDemo extends StatefulWidget{
   _LoginDemoState createState() => _LoginDemoState();
 }
 
-class _LoginDemoState extends State<LoginDemo>{
+class _LoginDemoState extends widgets.State<LoginDemo>{
   //variables used in the class
   String username = "";
   String password ="";
@@ -117,7 +122,7 @@ class _LoginDemoState extends State<LoginDemo>{
                           TextField(
                             decoration: const InputDecoration(
                               border: UnderlineInputBorder(),
-                              labelText: 'Enter your username',
+                              labelText: 'Enter your password',
                               fillColor: Colors.white,
                               filled: true,
                             ),
@@ -212,7 +217,7 @@ class _LoginDemoState extends State<LoginDemo>{
       //getting a transparent appbar
       backgroundColor: Colors.transparent, elevation: 0.0,
       centerTitle: false,
-      title: Image.asset('/Users/andreasiby/CDS/TinderBot/FrontEnd/flutter_application_1/lib/pictures/TinderBot_Logo-removebg-preview.png', fit: BoxFit.fitHeight,
+      title: Image.asset('/Users/andreasiby/CDS/TinderBot/FrontEnd/tinbot_frontend/lib/pictures/TinderBot_Logo-removebg-preview.png', fit: BoxFit.fitHeight,
       ),
       actions: <Widget>[
       Row(
