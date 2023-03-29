@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api, prefer_const_literals_to_create_immutables
 
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -43,9 +44,10 @@ class _LoginDemoState extends State<LoginDemo> {
   ];
 
   Future<bool> login() async {
-    http.Response res = await http.get(
-        Uri.parse('http://localhost:8000/api/tinderbot/test'),
-        headers: <String, String>{'username': username});
+    http.Response res =
+        await http.get(Uri.parse('http://localhost:8000/api/tinderbot/'));
+
+    log(res.body);
 
     int status = res.statusCode;
 
