@@ -128,5 +128,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ### SERVE FRONT END ON 3000
 CORS_ORIGIN_WHITELIST = [
-     'http://localhost:3000'
+     'http://localhost:59615'
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True   
