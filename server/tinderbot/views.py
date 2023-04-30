@@ -25,12 +25,22 @@ class TinderBotView(viewsets.ModelViewSet):
     serializer_class = TodoSerializer
     queryset = TinderBot.objects.all()
 
-    # define some endpoint getLogin(data) {
-    #   // process data.username
-    #  //  return httpResponse() }
-
-    #@action(detail=False, methods=['get'])
-
+class InitialMatchingView(viewsets.ViewSet):
+    @action(methods=['get'], detail=False)
+    def get_initial_images(self, request, *args, **kwargs):
+        '''
+        Return all the inital images that the user should classify, in order 
+        (IMG1, IMG2, etc.) This may be too much data to send over all at once, 
+        so if it fails after attempting we should workshop it / google solutions
+        ''' 
+        return
+    
+    @action(methods=['post'], detail=False)
+    def initial_classifications(self, request, *args, **kwargs):
+        '''
+        Return all the inital images that the user should classify, 
+        ''' 
+        return
 
 class LoginApiView(viewsets.ViewSet):
     # add permission to check if user is authenticated
@@ -38,7 +48,9 @@ class LoginApiView(viewsets.ViewSet):
     # 1. List all
     @action(methods=['get'], detail=False)
     def get_token(self, request, *args, **kwargs):
-        refresh_token = get_refresh_token(request.otp_code, request.phone_number)
+        print(request.GET)
+        refresh_token = get_refresh_token(request.GET.get("otp_code"), request.GET.get("phone_number"))
+        api_token = get_api_token(refresh_token)
         return Response(refresh_token, status=status.HTTP_200_OK)
 
     @action(methods=['post'], detail=False)
@@ -54,26 +66,6 @@ class LoginApiView(viewsets.ViewSet):
         todos = Todo.objects.filter(user = request.user.id)
         serializer = TodoSerializer(todos, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-    # 2. Create
-    def post(self, request, *args, **kwargs):
-        '''
-        Create the Todo with given todo data
-        '''
-        data = {
-            'task': request.data.get('task'), 
-            'completed': request.data.get('completed'), 
-            'user': request.user.id
-        }
-        serializer = TodoSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    
-
 
 
     
