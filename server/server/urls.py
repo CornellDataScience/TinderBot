@@ -18,11 +18,15 @@ from django.urls import path, include
 from rest_framework import routers
 from tinderbot import views
 
+
 router = routers.DefaultRouter()
-router.register(r'tinderbot', views.TinderBotView, 'tinderbot')
+#router.register(r'tinderbot', views.TinderBotView, 'tinderbot')
 #router.register(r'username', views.TinderBotView.as_view({'post':'hellodjango'}), 'username')
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    #path('login/', views.getOTP_SMS),
+    #path('admin/', admin.site.urls),
+    #path('api/', include(router.urls)),
+    path('login/get_sms', views.LoginApiView.as_view({'post': 'get_sms'})),
+    path('login/get_login', views.LoginApiView.as_view({'get': 'get_token'})),
 ]
