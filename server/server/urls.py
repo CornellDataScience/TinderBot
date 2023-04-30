@@ -24,9 +24,16 @@ router = routers.DefaultRouter()
 #router.register(r'username', views.TinderBotView.as_view({'post':'hellodjango'}), 'username')
 
 urlpatterns = [
-    #path('login/', views.getOTP_SMS),
-    #path('admin/', admin.site.urls),
-    #path('api/', include(router.urls)),
+    # login endpoints
     path('login/get_sms', views.LoginApiView.as_view({'post': 'get_sms'})),
     path('login/get_login', views.LoginApiView.as_view({'get': 'get_token'})),
+
+    # initial matching endpoints
+    path('initial/get_initial_images', views.InitialMatchingView.as_view({'get': 'get_initial_images'})),
+    path('initial/send_classifications', views.LoginApiView.as_view({'post': 'initial_classifications'})),
+
+    # tinderbot stage endpoints
+    path('tinderbot/next_profile', views.TinderBotView.as_view({'get': 'get_next_profile'}))
+
+
 ]

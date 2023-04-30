@@ -21,9 +21,15 @@ from .tinder_api.phone_auth_token import send_otp_code, get_refresh_token, get_a
 
 
 ## viewsets automatically implements a table to be edited, but we can change this
-class TinderBotView(viewsets.ModelViewSet):
-    serializer_class = TodoSerializer
-    queryset = TinderBot.objects.all()
+class TinderBotView(viewsets.ViewSet):
+    @action(methods=['get'], detail=False)
+    def get_next_profile(self, request, *args, **kwargs):
+        '''
+        Call Tinder API and recieve the next profile (profile) in this person's lineup
+        Call result = model.classify(profile)
+        Return both the image and result
+        ''' 
+        return
 
 class InitialMatchingView(viewsets.ViewSet):
     @action(methods=['get'], detail=False)
@@ -38,8 +44,15 @@ class InitialMatchingView(viewsets.ViewSet):
     @action(methods=['post'], detail=False)
     def initial_classifications(self, request, *args, **kwargs):
         '''
-        Return all the inital images that the user should classify, 
+        Request will contain the classifications, in order, like:
+        {'IMG1.png': 1, 'IMG2.png':0, 'IMG3.png':1, ...}
+
+        This function should prcoess the classifications, and call TRAIN_MODEL()
+
+        Them model should be written to a .txt or stored to database,
         ''' 
+        classifications = request.data['responses']
+        
         return
 
 class LoginApiView(viewsets.ViewSet):
