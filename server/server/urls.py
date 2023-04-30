@@ -34,6 +34,4 @@ urlpatterns = [
 
     # tinderbot stage endpoints
     path('tinderbot/next_profile', views.TinderBotView.as_view({'get': 'get_next_profile'}))
-
-
 ]

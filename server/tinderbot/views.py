@@ -15,10 +15,6 @@ from .tinder_api.phone_auth_token import send_otp_code, get_refresh_token, get_a
 
 # Create your views here.
 
-#client = pymongo.MongoClient("mongodb+srv://tinderbot:tinderbotadmin@cluster0.ad62g.mongodb.net/?retryWrites=true&w=majority")
-#db = client.test
-
-
 
 ## viewsets automatically implements a table to be edited, but we can change this
 class TinderBotView(viewsets.ViewSet):
