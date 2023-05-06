@@ -1,2 +1,2 @@
 host = 'https://api.gotinder.com'
-tinder_token = "882294b2-1c25-4ad9-89bb-013aa72d1f39"
+tinder_token = "666523ac-ae6d-434e-b6bb-6497ea012aff"
