@@ -15,19 +15,18 @@ def get_img_urls():
     return json.dumps(photo_dict)
 
 #attemps to download images into the images/unclassified folder
-def download_imgs():
+def download_imgs(index):
     recs = get_recs_v2()['data']['results']
-    i = 1
+    i = index*20 + 1
+    count = 0
     for person in recs:
         #/Users/maxwang/CDS/TinderBot/images/unclassified/1.jpg 
 
-        fname = '/Users/maxwang/CDS/TinderBot/images/unclassified/{}.jpg'.format(i)
-        #print(fname)
+        fname = '../images/unclassified/{}.jpg'.format(i)
         #isExist = os.path.exists(fname)
         #print(isExist)
-        #person{}.jpg'.format(i)
-        #print(fname)
-        requesturl = recs[i]['user']['photos'][0]['url']
+        if(count +1 > len(recs)): break
+        requesturl = recs[count]['user']['photos'][0]['url']
         #print(requesturl)
 
         urllib.request.urlretrieve(requesturl, fname)
@@ -36,29 +35,9 @@ def download_imgs():
             handler.write(img_data)
         #print(loc)
         i += 1
-        if i == 21: break
-#TRY RUNNING THIS?
-# # Adding user_agent information
-# opener=urllib.request.build_opener()
-# opener.addheaders=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36')]
-# urllib.request.install_opener(opener)
-
-
-
-
-#json_str = json.dumps(photo_dict)
-#print(json_str)
-
-# writing to text.txt
-#with open("test.txt", 'w') as f:
-#    f.write(json_str)
-
-
-# format of json
-#json_str = json.dumps(get_recs_v2(), indent =3)
-#print(json_str)
-
+        count += 1
+  
 
 
 if __name__ == "__main__":
-    download_imgs()
+    download_imgs(1)
