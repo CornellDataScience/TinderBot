@@ -6,6 +6,7 @@ from PIL import Image
 PERSON_CLASS = 1
 SCORE_THRESHOLD = 0.5
 
+
 def run_inference_for_single_image(image, sess):
     ops = tf.get_default_graph().get_operations()
     all_tensor_names = {output.name for op in ops for output in op.outputs}
@@ -23,9 +24,12 @@ def run_inference_for_single_image(image, sess):
         detection_boxes = tf.squeeze(tensor_dict['detection_boxes'], [0])
         detection_masks = tf.squeeze(tensor_dict['detection_masks'], [0])
         # Reframe is required to translate mask from box coordinates to image coordinates and fit the image size.
-        real_num_detection = tf.cast(tensor_dict['num_detections'][0], tf.int32)
-        detection_boxes = tf.slice(detection_boxes, [0, 0], [real_num_detection, -1])
-        detection_masks = tf.slice(detection_masks, [0, 0, 0], [real_num_detection, -1, -1])
+        real_num_detection = tf.cast(
+            tensor_dict['num_detections'][0], tf.int32)
+        detection_boxes = tf.slice(detection_boxes, [0, 0], [
+                                   real_num_detection, -1])
+        detection_masks = tf.slice(detection_masks, [0, 0, 0], [
+                                   real_num_detection, -1, -1])
         detection_masks_reframed = utils_ops.reframe_box_masks_to_image_masks(
             detection_masks, detection_boxes, image.shape[1], image.shape[2])
         detection_masks_reframed = tf.cast(

@@ -1,0 +1,6 @@
+{
+  "cmake.configureOnOpen": true,
+  "python.analysis.extraPaths": [
+    "./lib/python3.8/site-packages/rest_framework"
+  ]
+}
