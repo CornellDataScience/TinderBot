@@ -1,7 +1,7 @@
 # TinderBot
 Saving the world one intelligent match at a time.
 
-#Setup
+# Setup
 
 We are using python venv
 
